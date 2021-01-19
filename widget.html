@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/bootstrap-multiselect.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <script src="js/bootstrap-multiselect.js"></script>
+      <!-- <script src="App/SearchProgram.js"></script> -->
+      <style>
+        .new-search-form {
+        box-shadow: 0 0 8px #A49157;
+        background: #fff;
+        border-radius: 4px;
+        padding: 40px 30px 15px;
+        margin: 40px 0 40px 0;
+        }
+        .col-sm-7 {
+        width: 58.33333333%;
+        }
+        .new-search-form .multiselect-selected-text {
+            color: #999999;
+        }
+        .control-label {
+        font-family: 'CircularStdMedium';
+        font-size: 14px;
+        color: #3D464D;
+        font-weight: normal;
+        position: absolute;
+        background: #fff;
+        background-image: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-size: initial;
+        background-attachment: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: rgb(255, 255, 255);
+        top: 28px;
+        left: 35px;
+        padding: 0 10px;
+        z-index: 9;
+        }
+        .new-search-form {
+            margin: 40px 0 60px 0;
+            height: 223px;
+            width: 600px;
+        }
+        .new-search-form {
+            box-shadow: 0 0 8px #A49157;
+            background: #fff;
+            border-radius: 4px;
+            padding: 40px 30px 15px;
+            margin: 40px 0 40px 0;
+        }
+        .new-search-form label.control-label {
+            font-family: 'CircularStdMedium';
+            font-size: 14px;
+            color: #3D464D;
+            font-weight: normal;
+            position: absolute;
+            background: #fff;
+            top: -13px;
+            left: 20px;
+            padding: 0 10px;
+            z-index: 9;
+        }
+        .new-search-form .btn-primary {
+            color: #fff;
+            background-color: #FF5A5F;
+            border-color: #FF5A5F;
+            border-radius: 4px;
+            padding: 19px 12px;
+            text-transform: uppercase;
+            display: block;
+            width: 100%;
+            font-size: 14px;
+            font-family: 'CircularStdMedium';
+        }
+        .new-search-form .multiselect-selected-text {
+            color: #999999;
+        }
+
+        .multiselect-selected-text {
+            width: 200px;
+            display: inline-block;
+            overflow: hidden;
+            margin: 5px 0 0 0;
+        }
+        *{
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        *{
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .new-search-form .btn-default {
+            color: #373737;
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            border: 1px solid #D3D3D3 !important;
+            border-radius: 4px;
+            height: 60px;
+            width: 100%;
+            overflow: hidden;
+            padding: 12px 20px !important;
+            box-shadow: none !important;
+            text-align: left;
+        }
+        .btn-default {
+            color: #333;
+            background-color: #fff;
+            border-color: #ccc;
+        }
+        .btn {
+            display: inline-block;
+            margin-bottom: 0;
+            font-weight: 400;
+            text-align: center;
+            vertical-align: middle;
+            cursor: pointer;
+            background-image: none;
+            border: 1px solid transparent;
+            white-space: nowrap;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            border-radius: 4px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .btn-default {
+            color: #333;
+            background-color: #fff;
+            border-color: #ccc;
+        }
+        .btn {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+        input, button, select, textarea {
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+        }
+        button, html input[type=button], input[type=reset], input[type=submit] {
+            -webkit-appearance: button;
+            cursor: pointer;
+        }
+        button, select {
+            text-transform: none;
+        }
+        button, input, optgroup, select, textarea {
+            color: inherit;
+            font: inherit;
+            margin: 0;
+        }
+        input, button, select, textarea {
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+        }
+        button, html input[type="button"], input[type="reset"], input[type="submit"] {
+            -webkit-appearance: button;
+            cursor: pointer;
+        }
+        button, select {
+            text-transform: none;
+        }
+        button, input, optgroup, select, textarea {
+            margin: 0;
+            font: inherit;
+            color: inherit;
+        }
+        button {
+            text-rendering: auto;
+            color: -internal-light-dark(black, white);
+            letter-spacing: normal;
+            word-spacing: normal;
+            text-transform: none;
+            text-indent: 0px;
+            text-shadow: none;
+            text-align: center;
+            cursor: default;
+            font: 400 13.3333px Arial;
+        }
+        .new-search-form .form-control {
+            border: 1px solid #D3D3D3;
+            border-radius: 4px;
+            height: 60px;
+            box-shadow: inherit;
+            padding: 6px 20px;
+            color: #999999;
+        }
+
+        .form-control {
+            display: block;
+            width: 100%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        }
+        .form-control {
+            display: block;
+            width: 100%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        }
+        input, button, select, textarea {
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+        }
+        input {
+            line-height: normal;
+        }
+        button, input, optgroup, select, textarea {
+            color: inherit;
+            font: inherit;
+            margin: 0;
+        }
+        input, button, select, textarea {
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+        }
+        input {
+            line-height: normal;
+        }
+        button, input, optgroup, select, textarea {
+            margin: 0;
+            font: inherit;
+            color: inherit;
+        }
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        input[type="text" i] {
+            padding: 1px 2px;
+        }
+        input {
+            text-rendering: auto;
+            color: -internal-light-dark(black, white);
+            letter-spacing: normal;
+            word-spacing: normal;
+            text-transform: none;
+            text-indent: 0px;
+            text-shadow: none;
+            display: inline-block;
+            text-align: start;
+            appearance: textfield;
+            background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+            -webkit-rtl-ordering: logical;
+            cursor: text;
+            margin: 0em;
+            font: 400 13.3333px Arial;
+            padding: 1px 2px;
+            border-width: 2px;
+            border-style: inset;
+            border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+            border-image: initial;
+        }
+        body {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #333;
+            background-color: #fff;
+        }
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #333;
+            background-color: #fff;
+        }
+        body {
+            padding-top: 0;
+            padding-bottom: 0;
+            color: #666666;
+            font-size: 15px;
+            line-height: 28px !important;
+            font-family: 'CircularStdBook' !important;
+            -webkit-font-smoothing: antialiased;
+            font-weight: 400 !important;
+            overflow-x: hidden;
+        }
+        body, html {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .col-sm-6 {
+            width: 50%;
+            position: relative;
+            min-height: 1px;
+            padding-left: 15px;
+            padding-right: 15px;
+            float: left;
+            width: 50%;
+            position: relative;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+        .new-search-form .btn .caret {
+            margin-left: 0px;
+            margin-top: 12px;
+        }
+        .btn .caret {
+            margin-left: 0;
+        }
+        .btn .caret {
+            margin-left: 0;
+        }
+        .new-search-form .caret {
+            border-top: 6px dashed;
+            border-right: 6px solid transparent;
+            border-left: 6px solid transparent;
+            float: right;
+        }
+        .caret {
+            display: inline-block;
+            width: 0;
+            height: 0;
+            margin-left: 2px;
+            vertical-align: middle;
+            border-top: 4px solid;
+            border-right: 4px solid transparent;
+            border-left: 4px solid transparent;
+        }
+        .caret {
+            display: inline-block;
+            width: 0;
+            height: 0;
+            margin-left: 2px;
+            vertical-align: middle;
+            border-top: 4px dashed;
+            border-top: 4px solid \9;
+            border-right: 4px solid transparent;
+            border-left: 4px solid transparent;
+        }
+        b, strong {
+            font-weight: 700;
+        }
+        b, strong {
+            font-weight: bold;
+        }
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        b {
+            font-weight: bold;
+        }
+        .open>.dropdown-menu {
+            display: block;
+        }
+
+        .open > .dropdown-menu {
+            display: block;
+        }
+        .new-search-form .multiselect-container {
+            margin: -9px 0 0 0;
+            border-radius: 0px;
+            min-width: 225px;
+            height: 164px;
+            overflow-y: auto;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1000;
+            display: none;
+            float: left;
+            min-width: 160px;
+            padding: 5px 0;
+            margin: 2px 0 0;
+            list-style: none;
+            font-size: 14px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border: 1px solid rgba(0,0,0,.15);
+            border-radius: 4px;
+            -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+            box-shadow: 0 6px 12px rgba(0,0,0,.175);
+            background-clip: padding-box;
+        }
+        .multiselect-container {
+            position: absolute;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1000;
+            display: none;
+            float: left;
+            min-width: 160px;
+            padding: 5px 0;
+            margin: 2px 0 0;
+            font-size: 17px;
+            text-align: left;
+            list-style: none;
+            background-color: #fff;
+            -webkit-background-clip: padding-box;
+            background-clip: padding-box;
+            border: 1px solid #ccc;
+            border: 1px solid rgba(0, 0, 0, .15);
+            border-radius: 4px;
+            -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+        }
+        ul, ol {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        ul, ol {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        ul {
+            display: block;
+            list-style-type: disc;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            padding-inline-start: 40px;
+        }
+        .ui-widget.ui-widget-content {
+            border: 1px solid #c5c5c5;
+        }
+        .ui-widget.ui-widget-content {
+            height: 182px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        .ui-widget-content {
+            border: 1px solid #dddddd;
+            background: #ffffff;
+            color: #333333;
+        }
+        .ui-widget {
+            font-family: Arial,Helvetica,sans-serif;
+            font-size: 1em;
+        }
+        .ui-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: block;
+            outline: 0;
+        }
+        .ui-autocomplete {
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: default;
+        }
+        .ui-front {
+            z-index: 100;
+        }
+        ul, ol {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        ul, ol {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        ul {
+            display: block;
+            list-style-type: disc;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            padding-inline-start: 40px;
+        }
+      </style>
+
+    </head>
+    <body>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-7">
+                  
+      <div class="new-search-form">
+        <form action="/" id="frm_SwiftSearchPage" method="post" novalidate="novalidate">
+          <input name="__RequestVerificationToken" type="hidden" value="iecc2Z97hpaRo1xNpjAhfxVItd5arjj-Kyu9To6EZtSRPV1OSzXJWZcdL8ARjKml6SXwLwp47j8cH5oLJbW4JbF43x1OzjKV4PkUTMZAzHo1">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="control-label" for="Search"><b>Course Name</b></label>
+                  <input autocomplete="off" class="form-control text-box single-line ui-autocomplete-input" data-val="true" data-val-required="Please enter Course Name" id="Search" name="Search" placeholder="Search for courses" tabindex="1" type="text" value="">
+                  <span class="field-validation-valid text-danger" data-valmsg-for="Search" data-valmsg-replace="true"></span>
+                  <span id="autocomp_spinner" class="fa fa-spinner fa-spin" style="display:none"></span>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="control-label" for="StudyLevel"><b>Study Level</b></label>
+                  <span class="multiselect-native-select">
+                      <select class="listboxStudyLevel form-control" data-val="true" data-val-required="Please select Study level" id="StudyLevelNames" multiple="multiple" name="StudyLevelNames" tabindex="2">
+                        <option value="Undergraduate">Undergraduate</option>
+                        <option value="Postgraduate">Postgraduate</option>
+                        <option value="PhD">PhD</option>
+                        <option value="Short Term Programs">Short Term Programs</option>
+                      </select>
+                      <div class="btn-group">
+                        <button type="button" class="multiselect dropdown-toggle btn btn-default" data-toggle="dropdown" tabindex="2" title="Please Select">
+                          <span class="multiselect-selected-text">Please Select</span> 
+                          <b class="caret"></b>
+                        </button>
+                        <ul class="multiselect-container dropdown-menu">
+                          <li class="multiselect-item multiselect-all">
+                            <a tabindex="0" class="multiselect-all">
+                              <label class="checkbox">
+                              <input type="checkbox" value="multiselect-all">  Select all</label>
+                            </a>
+                          </li>
+                          <li>
+                            <a tabindex="0">
+                              <label class="checkbox">
+                                <input type="checkbox" value="Undergraduate"> Undergraduate</label>
+                            </a>
+                          </li>
+                          <li>
+                            <a tabindex="0">
+                              <label class="checkbox">
+                                <input type="checkbox" value="Postgraduate"> Postgraduate</label>
+                            </a>
+                          </li>
+                          <li>
+                            <a tabindex="0">
+                              <label class="checkbox">
+                                <input type="checkbox" value="PhD"> PhD</label>
+                            </a>
+                          </li>
+                          <li>
+                            <a tabindex="0">
+                              <label class="checkbox">
+                                <input type="checkbox" value="Short Term Programs"> Short Term Programs</label>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                  </span>
+                  <span class="field-validation-valid text-danger" data-valmsg-for="StudyLevelNames" data-valmsg-replace="true"></span>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="control-label" for="Countries"><b>Country</b></label>
+                  <span class="multiselect-native-select">
+                    <select class="listboxCountries form-control" data-val="true" data-val-required="Please select Country" id="CountriesNames" multiple="multiple" name="CountriesNames" tabindex="3">
+                      <option value="United States of America">United States of America</option>
+                      <option value="Australia">Australia</option>
+                      <option value="Canada">Canada</option>
+                      <option value="United Kingdom">United Kingdom</option>
+                      <option value="New Zealand">New Zealand</option>
+                      <option value="Singapore">Singapore</option>
+                      <option value="Dubai">Dubai</option>
+                      <option value="Ireland">Ireland</option>
+                      <option value="Germany">Germany</option>
+                      <option value="France">France</option>
+                      <option value="Sweden">Sweden</option>
+                      <option value="Netherlands">Netherlands</option>
+                      <option value="Austria">Austria</option>
+                      <option value="Denmark">Denmark</option>
+                      <option value="Finland">Finland</option>
+                      <option value="Italy">Italy</option>
+                      <option value="Hungary">Hungary</option>
+                      <option value="Switzerland">Switzerland</option>
+                      <option value="Spain">Spain</option>
+                      <option value="Lithuania">Lithuania</option>
+                      <option value="Latvia">Latvia</option>
+                      <option value="Cyprus">Cyprus</option>
+                      <option value="Poland">Poland</option>
+                      <option value="Czech Republic">Czech Republic</option>
+                      <option value="Malaysia">Malaysia</option>
+                      <option value="Mauritius">Mauritius</option>
+                      <option value="South Africa">South Africa</option>
+                      <option value="Hong Kong">Hong Kong</option>
+                      <option value="China">China</option>
+                      <option value="Bulgaria">Bulgaria</option>
+                      <option value="Vietnam">Vietnam</option>
+                      <option value="TestCountry">TestCountry</option>
+                      <option value="Malta">Malta</option>
+                      <option value="Japan">Japan</option>
+                      <option value="Test">Test</option>
+                    </select>
+                    <div class="btn-group">
+                      <button type="button" class="multiselect dropdown-toggle btn btn-default" data-toggle="dropdown" tabindex="3" title="Please Select">
+                        <span class="multiselect-selected-text">Please Select</span> 
+                          <b class="caret"></b>
+                      </button>
+                      <ul class="multiselect-container dropdown-menu">
+                        <li class="multiselect-item multiselect-all">
+                          <a tabindex="0" class="multiselect-all">
+                            <label class="checkbox">
+                              <input type="checkbox" value="multiselect-all">  Select all</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="United States of America"> United States of America</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Australia"> Australia</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Canada"> Canada</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="United Kingdom"> United Kingdom</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="New Zealand"> New Zealand</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Singapore"> Singapore</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Dubai"> Dubai</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Ireland"> Ireland</label>
+                            </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Germany"> Germany</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="France"> France</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Sweden"> Sweden</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Netherlands"> Netherlands</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Austria"> Austria</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Denmark"> Denmark</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Finland"> Finland</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Italy"> Italy</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Hungary"> Hungary</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Switzerland"> Switzerland</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Spain"> Spain</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Lithuania"> Lithuania</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Latvia"> Latvia</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Cyprus"> Cyprus</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Poland"> Poland</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Czech Republic"> Czech Republic</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Malaysia"> Malaysia</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                            <input type="checkbox" value="Mauritius"> Mauritius</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="South Africa"> South Africa</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Hong Kong"> Hong Kong</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="China"> China</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Bulgaria"> Bulgaria</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Vietnam"> Vietnam</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="TestCountry"> TestCountry</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Malta"> Malta</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Japan"> Japan</label>
+                          </a>
+                        </li>
+                        <li>
+                          <a tabindex="0">
+                            <label class="checkbox">
+                              <input type="checkbox" value="Test"> Test</label>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </span>                          
+                  <span class="field-validation-valid text-danger" data-valmsg-for="CountriesNames" data-valmsg-replace="true">
+                  </span>
+                  <div class="clearfix">
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <input type="submit" id="closebtn" value="Search" class="btn btn-primary" tabindex="5">
+              </div>
+            </div>
+        </form>                
+      </div>
+          </div>
+        </div>
+      </div>
+    </body>
+  </html>
